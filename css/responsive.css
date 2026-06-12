@@ -1,0 +1,40 @@
+@media (min-width: 768px) {
+  body {
+    padding-bottom: 0;
+  }
+
+  .bottom-nav {
+    display: none;
+  }
+
+  .top-nav {
+    height: 70px;
+  }
+
+  .page {
+    padding-top: 70px;
+  }
+
+  .desktop-nav {
+    display: flex !important;
+  }
+
+  .section {
+    padding: var(--space-3xl) var(--space-2xl);
+  }
+
+  .hero {
+    padding-top: 70px;
+  }
+
+  .toast {
+    bottom: 40px;
+    left: auto;
+    right: 40px;
+    transform: translateY(20px);
+  }
+
+  .toast.show {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,71 @@
+:root {
+  --bg: #0c0a14;
+  --bg2: #141120;
+  --bg3: #1e1830;
+  --card: #1a1530;
+  --card-hover: #231e3a;
+  --glass: rgba(26, 21, 48, 0.65);
+  --glass-border: rgba(212, 168, 71, 0.08);
+
+  --gold: #d4a847;
+  --gold2: #f2d680;
+  --gold3: #a67c2e;
+  --gold-dim: rgba(212, 168, 71, 0.12);
+
+  --text: #f0ece4;
+  --text2: #b8ae9c;
+  --text3: #7a7264;
+
+  --success: #3a9d5e;
+  --danger: #d4554a;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px rgba(212, 168, 71, 0.12);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes cartBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+

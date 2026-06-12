@@ -1,0 +1,11 @@
+/* ========================================
+   MAIN.CSS — Point d'entrée CSS
+   Rôle : Importe tous les fichiers CSS
+   dans l'ordre de cascading.
+   ======================================== */
+
+@import 'variables.css';
+@import 'base.css';
+@import 'layout.css';
+@import 'components.css';
+@import 'responsive.css';

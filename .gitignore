@@ -1,0 +1,28 @@
+# === Environment & Secrets ===
+.env
+.env.local
+.env.*.local
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Editor ===
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === Logs ===
+*.log
+npm-debug.log*
+
+# === node_modules (if npm install is run) ===
+node_modules/
+
+# === Serve / npx caches ===
+.serve/

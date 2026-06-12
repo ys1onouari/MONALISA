@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta name="theme-color" content="#0c0a14"/>
+  <meta name="description" content="Luxora · Restaurant Gastronomique — Menu Digital"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23d4a847%22><text y=%2220%22 font-size=%2220%22>L</text></svg>">
+  <title>LUXORA · Restaurant Gastronomique</title>
+
+  <!-- Polices Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<!-- ========== TOP NAVIGATION ========== -->
+<nav class="top-nav">
+  <a class="logo" href="#" data-page="home">
+    <div>
+      <div class="logo-text">LUXORA</div>
+      <div class="logo-sub">Restaurant Gastronomique</div>
+    </div>
+  </a>
+
+  <nav class="desktop-nav" id="desktopNav">
+    <button class="desktop-nav-item active" data-page="home">Accueil</button>
+    <button class="desktop-nav-item" data-page="menu">Menu</button>
+    <button class="desktop-nav-item" data-page="contact">Contact</button>
+    <button class="desktop-nav-item" data-page="admin" id="adminNavDesktop" style="display:none">Admin</button>
+  </nav>
+
+  <div class="nav-actions">
+    <button class="icon-btn" id="adminBtn" title="Administration">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </button>
+    <button class="icon-btn" id="cartOpenBtn" title="Panier" style="position:relative">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5" fill="currentColor" stroke="none"/><circle cx="20" cy="21" r="1.5" fill="currentColor" stroke="none"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ========== BOTTOM NAVIGATION ========== -->
+<nav class="bottom-nav" id="bottomNav">
+  <button class="nav-item active" data-page="home" id="bnav-home">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Accueil</span>
+    <span class="nav-dot"></span>
+  </button>
+  <button class="nav-item" data-page="menu" id="bnav-menu">
+    <svg viewBox="0 0 24 24"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+    <span>Menu</span>
+    <span class="nav-dot"></span>
+  </button>
+
+  <button class="nav-item" data-page="admin" id="bnav-admin" style="display:none">
+    <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+    <span>Admin</span>
+    <span class="nav-dot"></span>
+  </button>
+  <button class="nav-item" data-page="contact" id="bnav-contact">
+    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.64 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.16 6.16l.98-.98a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>Contact</span>
+    <span class="nav-dot"></span>
+  </button>
+</nav>
+
+<!-- ========== CART OVERLAY & SIDEBAR ========== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2 class="cart-title">Votre commande</h2>
+    <button class="close-btn" id="cartCloseBtn">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <p style="font-size:14px;font-weight:500">Votre panier est vide</p>
+      <p style="font-size:12px;margin-top:4px">Ajoutez des plats pour commencer</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-amount" id="cartTotal">0 DH</span>
+    </div>
+    <button class="cart-checkout" id="checkoutBtn">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.561 4.14 1.541 5.87L0 24l6.268-1.508A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.939 0-3.765-.494-5.353-1.359l-.373-.21-3.863.929.972-3.756-.235-.391A9.963 9.963 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Envoyer la commande via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ========== HOME PAGE ========== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern">
+      <div class="hero-video-wrap" id="heroVideoWrap">
+        <div id="heroVideo"></div>
+        <div class="hero-video-overlay"></div>
+      </div>
+    </div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Bienvenue chez</p>
+      <h1 class="hero-title">LUXORA</h1>
+      <p class="hero-subtitle">Expérience Gastronomique</p>
+      <p class="hero-tagline">Une expérience gastronomique d'exception<br/>Cuisine française raffinée · Saveurs du monde</p>
+      <button class="btn-primary" data-page="menu">
+        Découvrir le Menu
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="hero-divider">
+        <span class="hero-divider-line"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Explorer</p>
+      <h2 class="section-title">Nos Catégories</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="cat-grid reveal" id="homeCatGrid"></div>
+  </div>
+
+  <div class="gold-divider"><span class="gold-divider-line"></span><span class="gold-divider-diamond"></span><span class="gold-divider-line"></span></div>
+
+  <div class="section" style="padding-top:8px">
+    <div class="section-header reveal">
+      <p class="section-eyebrow">Sélection du Chef</p>
+      <h2 class="section-title">Coups de Cœur</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="featured-grid reveal" id="featuredGrid" style="padding:0 20px;max-width:1200px;margin:0 auto"></div>
+  </div>
+</div>
+
+<!-- ========== MENU PAGE ========== -->
+<div class="page" id="page-menu">
+  <div style="padding:20px 20px 0;padding-top:80px">
+    <div class="section-header">
+      <p class="section-eyebrow">Notre Carte</p>
+      <h2 class="section-title">Le Menu</h2>
+      <div class="section-line" style="margin-bottom:24px"></div>
+    </div>
+  </div>
+  <div class="filter-scroll">
+    <div class="filter-chips" id="filterChips"></div>
+  </div>
+  <div class="menu-grid" id="menuGrid"></div>
+  <div class="no-results" id="noResults" style="display:none">
+    <p>Aucun plat trouvé</p>
+    <p style="margin-top:8px;font-size:12px">Essayez un autre terme</p>
+  </div>
+</div>
+
+<!-- ========== CONTACT PAGE ========== -->
+<div class="page" id="page-contact">
+  <div style="padding-top:80px">
+    <div class="section-header" style="padding:0 24px">
+      <p class="section-eyebrow">Nous trouver</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="contact-wrap" id="contactWrap"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ADMIN DASHBOARD PAGE ========== -->
+<div class="page" id="page-admin">
+  <div class="admin-dashboard">
+  <div class="admin-scaffold">
+    <aside class="admin-sidebar">
+      <div class="admin-sidebar-header">LUXORA <span>Admin</span></div>
+      <nav class="admin-sidebar-nav">
+        <button class="admin-nav-item active" data-admin-view="items">
+          <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          Plats
+        </button>
+        <button class="admin-nav-item" data-admin-view="categories">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h12"/></svg>
+          Catégories
+        </button>
+        <button class="admin-nav-item" data-admin-view="config">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Configuration
+        </button>
+      </nav>
+      <button class="admin-logout" id="adminLogoutBtn">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Déconnexion
+      </button>
+    </aside>
+    <div class="admin-main">
+      <div class="admin-view active" data-admin-view="items">
+        <header class="admin-view-header">
+          <h1>Plats</h1>
+          <button class="admin-btn-add" id="adminAddItemBtn">+ Nouveau plat</button>
+        </header>
+        <div class="admin-table-wrap">
+          <table class="admin-tbl">
+            <thead><tr><th>Image</th><th>Nom</th><th>Catégorie</th><th>Prix</th><th>Dispo</th><th>Actions</th></tr></thead>
+            <tbody id="adminItemsBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="admin-view" data-admin-view="categories">
+        <header class="admin-view-header">
+          <h1>Catégories</h1>
+          <button class="admin-btn-add" id="adminAddCatBtn">+ Nouvelle catégorie</button>
+        </header>
+        <div class="admin-table-wrap">
+          <table class="admin-tbl">
+            <thead><tr><th>Nom</th><th>Ordre</th><th>Actions</th></tr></thead>
+            <tbody id="adminCatsBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="admin-view" data-admin-view="config">
+        <header class="admin-view-header">
+          <h1>Configuration</h1>
+          <button class="admin-btn-add" id="adminSaveConfig">Enregistrer</button>
+        </header>
+        <div class="admin-table-wrap" style="padding:24px">
+          <form id="adminConfigForm">
+            <div class="config-grid">
+              <div class="form-group"><label>Nom du restaurant</label><input name="restaurant_name"/></div>
+              <div class="form-group"><label>Sous-titre</label><input name="restaurant_subtitle"/></div>
+              <div class="form-group full"><label>Adresse</label><input name="address"/></div>
+              <div class="form-group full"><label>Horaires (HTML autorisé)</label><input name="hours"/></div>
+              <div class="form-group"><label>Téléphone (affiché)</label><input name="phone"/></div>
+              <div class="form-group"><label>Téléphone (brut, pour lien tel:)</label><input name="phone_raw"/></div>
+              <div class="form-group"><label>Email</label><input name="email"/></div>
+              <div class="form-group"><label>Instagram</label><input name="instagram"/></div>
+              <div class="form-group full"><label>WhatsApp (numéro, sans +)</label><input name="wa_number"/></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="admin-modal-overlay" id="adminModalOverlay">
+  <div class="admin-modal" id="adminModalContent"></div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authClose">✕</button>
+    <div class="auth-title">Administration</div>
+    <div class="auth-sub">Connectez-vous pour gérer le menu</div>
+    <form id="authForm">
+      <input class="auth-input" type="email" id="authEmail" placeholder="E-mail" value="admin@luxora.com" required/>
+      <input class="auth-input" type="password" id="authPassword" placeholder="Mot de passe" required/>
+      <div class="auth-error" id="authError"></div>
+      <div class="auth-lock" id="authLock">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <div class="auth-lock-title">Accès temporairement verrouillé</div>
+        <div class="auth-lock-msg">Trop de tentatives. Réessayez dans <span id="authLockTimer">24h 0min</span>.</div>
+      </div>
+      <button class="auth-btn" type="submit">Se connecter</button>
+    </form>
+  </div>
+</div>
+
+<!-- Scripts (modules ES6 — nécessite un serveur HTTP local) -->
+<script type="module" src="js/main.js"></script>
+
+<!-- YouTube Hero Background -->
+<script>
+function onYouTubeIframeAPIReady() {
+  new YT.Player('heroVideo', {
+    videoId: 'B8rAc3k2EoU',
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      playlist: 'B8rAc3k2EoU',
+      controls: 0,
+      showinfo: 0,
+      mute: 1,
+      rel: 0,
+      modestbranding: 1,
+      playsinline: 1,
+      start: 0,
+    },
+    events: {
+      onReady: (e) => e.target.playVideo(),
+      onStateChange: (e) => {
+        if (e.data === YT.PlayerState.PLAYING) {
+          const interval = setInterval(() => {
+            const t = e.target.getCurrentTime();
+            if (t >= 98) {
+              e.target.seekTo(0);
+            }
+          }, 500);
+          const stopCheck = () => {
+            if (e.target.getPlayerState() !== YT.PlayerState.PLAYING) {
+              clearInterval(interval);
+            } else {
+              requestAnimationFrame(stopCheck);
+            }
+          };
+          stopCheck();
+        }
+      },
+    },
+  });
+}
+</script>
+<script src="https://www.youtube.com/iframe_api" defer></script>
+</body>
+</html>
