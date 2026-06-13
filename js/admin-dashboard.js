@@ -5,6 +5,7 @@ import {
 } from './supabase.js';
 import { supabaseReady } from './supabase.js';
 import { loadMenuData, renderFeatured, renderFilterChips, renderMenuGrid, renderContact, showToast } from './menu.js';
+import { showConfirm, showAlert } from './modal.js';
 
 /* --- Init --- */
 let items = [];
@@ -21,7 +22,29 @@ function $(id) { return document.getElementById(id); }
 /* --- Render --- */
 function renderAll() {
   renderItems();
+  renderItemsHeader();
+  renderCatsHeader();
   renderCats();
+}
+
+function renderItemsHeader() {
+  const header = document.querySelector('.admin-view[data-admin-view="items"] .admin-view-header');
+  if (!header) return;
+  const actions = header.querySelector('.admin-header-actions');
+  if (actions) return;
+  const addBtn = header.querySelector('#adminAddItemBtn');
+  const wrap = document.createElement('div');
+  wrap.className = 'admin-header-actions';
+  wrap.innerHTML = `
+    <button class="admin-btn-import" id="adminImportBtn">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Importer XLSX
+    </button>
+    <button class="admin-btn-export" id="adminExportBtn">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Exporter XLSX
+    </button>`;
+  if (addBtn) addBtn.after(wrap);
 }
 
 function renderItems() {
@@ -47,6 +70,25 @@ function renderItems() {
       </td>
     </tr>`;
   }).join('');
+}
+
+function renderCatsHeader() {
+  const header = document.querySelector('.admin-view[data-admin-view="categories"] .admin-view-header');
+  if (!header) return;
+  if (header.querySelector('.admin-header-actions')) return;
+  const addBtn = header.querySelector('#adminAddCatBtn');
+  const wrap = document.createElement('div');
+  wrap.className = 'admin-header-actions';
+  wrap.innerHTML = `
+    <button class="admin-btn-import" id="adminCatImportBtn">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Importer XLSX
+    </button>
+    <button class="admin-btn-export" id="adminCatExportBtn">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Exporter XLSX
+    </button>`;
+  if (addBtn) addBtn.after(wrap);
 }
 
 function renderCats() {
@@ -148,6 +190,27 @@ function catFormHtml(cat) {
 
 /* --- Event binding --- */
 function bindEvents() {
+  const importInput = document.createElement('input');
+  importInput.type = 'file';
+  importInput.accept = '.xlsx,.xls';
+  importInput.style.display = 'none';
+  importInput.id = 'adminXlsxInput';
+  document.body.appendChild(importInput);
+  importInput.addEventListener('change', async () => {
+    if (importInput.files[0]) await importXLSX(importInput.files[0]);
+    importInput.value = '';
+  });
+
+  const catImportInput = document.createElement('input');
+  catImportInput.type = 'file';
+  catImportInput.accept = '.xlsx,.xls';
+  catImportInput.style.display = 'none';
+  catImportInput.id = 'adminCatXlsxInput';
+  document.body.appendChild(catImportInput);
+  catImportInput.addEventListener('change', async () => {
+    if (catImportInput.files[0]) await importCatsXLSX(catImportInput.files[0]);
+    catImportInput.value = '';
+  });
 
   document.querySelectorAll('[data-admin-view]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -169,6 +232,13 @@ function bindEvents() {
   });
 
   document.addEventListener('click', (e) => {
+    if (e.target.closest('#adminExportBtn')) exportXLSX();
+    if (e.target.closest('#adminImportBtn')) importInput.click();
+    if (e.target.closest('#adminCatExportBtn')) exportCatsXLSX();
+    if (e.target.closest('#adminCatImportBtn')) catImportInput.click();
+  });
+
+  document.addEventListener('click', (e) => {
     if (e.target.closest('[data-admin-close]')) closeModal();
   });
 
@@ -183,7 +253,7 @@ function bindEvents() {
     const di = e.target.closest('[data-delete-item]');
     if (di) {
       const id = Number(di.dataset.deleteItem);
-      if (confirm('Supprimer ce plat ?')) { await deleteMenuItem(id); await refresh(); }
+      if (await showConfirm('Supprimer ce plat ?')) { await deleteMenuItem(id); await refresh(); }
       return;
     }
     const ec = e.target.closest('[data-edit-cat]');
@@ -196,7 +266,7 @@ function bindEvents() {
     const dc = e.target.closest('[data-delete-cat]');
     if (dc) {
       const id = Number(dc.dataset.deleteCat);
-      if (confirm('Supprimer cette catégorie ?')) { await deleteCategory(id); await refresh(); }
+      if (await showConfirm('Supprimer cette catégorie ?')) { await deleteCategory(id); await refresh(); }
     }
   });
 }
@@ -269,6 +339,171 @@ async function refresh() {
   renderFilterChips();
   renderMenuGrid();
   loadConfig();
+}
+
+/* --- XLSX Import / Export --- */
+
+const XLSX_CDN = 'https://esm.sh/xlsx@0.18.5';
+
+function itemToRow(item) {
+  return {
+    Nom: item.name,
+    Catégorie: item.category,
+    Prix: item.price,
+    Description: item.description || '',
+    Disponible: item.available ? 'Oui' : 'Non',
+    Populaire: item.popular ? 'Oui' : 'Non',
+  };
+}
+
+function rowToItem(row, idx) {
+  const name = String(row.Nom || '').trim();
+  if (!name) throw new Error(`Ligne ${idx + 1} : Nom manquant`);
+  const category = String(row.Catégorie || '').trim();
+  if (!category) throw new Error(`Ligne ${idx + 1} : Catégorie manquante pour « ${name} »`);
+  const price = Number(row.Prix);
+  if (isNaN(price) || price <= 0) throw new Error(`Ligne ${idx + 1} : Prix invalide pour « ${name} »`);
+  const available = String(row.Disponible || 'Oui').toLowerCase() === 'oui';
+  const popular = String(row.Populaire || 'Non').toLowerCase() === 'oui';
+  const description = String(row.Description || '');
+  return { name, category, price, description, available, popular };
+}
+
+async function getXLSX() {
+  const mod = await import(XLSX_CDN);
+  return mod.default || mod;
+}
+
+async function exportXLSX() {
+  try {
+    const XLSX = await getXLSX();
+    const ws = XLSX.utils.json_to_sheet(items.map(itemToRow));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Plats');
+    const data = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `luxora_plats_${new Date().toISOString().slice(0, 10)}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Export terminé');
+  } catch (e) {
+    showToast('Erreur export : ' + e.message);
+  }
+}
+
+async function importXLSX(file) {
+  try {
+    const buf = await file.arrayBuffer();
+    const XLSX = await getXLSX();
+    const wb = XLSX.read(buf, { type: 'array' });
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws);
+    if (!rows.length) { showToast('Fichier vide'); return; }
+    const results = { created: 0, updated: 0, errors: [] };
+    for (let i = 0; i < rows.length; i++) {
+      try {
+        const data = rowToItem(rows[i], i);
+        const existing = items.find(it => it.name.toLowerCase() === data.name.toLowerCase());
+        if (existing) {
+          await updateMenuItem(existing.id, data);
+          results.updated++;
+        } else {
+          await addMenuItem({ ...data, image_url: '' });
+          results.created++;
+        }
+      } catch (err) {
+        results.errors.push(err.message);
+      }
+    }
+    let msg = `${results.created} créé(s), ${results.updated} mis à jour`;
+    if (results.errors.length) msg += `, ${results.errors.length} erreur(s)`;
+    showToast(msg);
+    if (results.errors.length) {
+      await showAlert(results.errors.join('\n'), 'Erreurs d\'import');
+    }
+    await refresh();
+  } catch (e) {
+    showToast('Erreur import : ' + e.message);
+  }
+}
+
+/* --- XLSX Catégories --- */
+
+function catToRow(cat) {
+  return {
+    Nom: cat.name,
+    Ordre: cat.sort_order ?? 0,
+  };
+}
+
+function rowToCat(row, idx) {
+  const name = String(row.Nom || '').trim();
+  if (!name) throw new Error(`Ligne ${idx + 1} : Nom manquant`);
+  const sortOrder = Number(row.Ordre) || 0;
+  return { name, sort_order: sortOrder };
+}
+
+async function exportCatsXLSX() {
+  try {
+    const XLSX = await getXLSX();
+    const ws = XLSX.utils.json_to_sheet(cats.map(catToRow));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Catégories');
+    const data = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `luxora_categories_${new Date().toISOString().slice(0, 10)}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('Export terminé');
+  } catch (e) {
+    showToast('Erreur export : ' + e.message);
+  }
+}
+
+async function importCatsXLSX(file) {
+  try {
+    const buf = await file.arrayBuffer();
+    const XLSX = await getXLSX();
+    const wb = XLSX.read(buf, { type: 'array' });
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws);
+    if (!rows.length) { showToast('Fichier vide'); return; }
+    const results = { created: 0, updated: 0, errors: [] };
+    for (let i = 0; i < rows.length; i++) {
+      try {
+        const data = rowToCat(rows[i], i);
+        const existing = cats.find(c => c.name.toLowerCase() === data.name.toLowerCase());
+        if (existing) {
+          await updateCategory(existing.id, data);
+          results.updated++;
+        } else {
+          await addCategory(data.name, '', data.sort_order);
+          results.created++;
+        }
+      } catch (err) {
+        results.errors.push(err.message);
+      }
+    }
+    let msg = `${results.created} créée(s), ${results.updated} mise(s) à jour`;
+    if (results.errors.length) msg += `, ${results.errors.length} erreur(s)`;
+    showToast(msg);
+    if (results.errors.length) {
+      await showAlert(results.errors.join('\n'), 'Erreurs d\'import');
+    }
+    await refresh();
+  } catch (e) {
+    showToast('Erreur import : ' + e.message);
+  }
 }
 
 /* --- Config --- */
