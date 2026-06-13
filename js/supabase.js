@@ -1,16 +1,17 @@
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
 
-let _supabase = null;
+let _supabasePromise = null;
 
-async function getClient() {
-  if (!_supabase) {
-    const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
-    _supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+function getClient() {
+  if (!_supabasePromise) {
+    _supabasePromise = (async () => {
+      const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2');
+      return createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    })();
   }
-  return _supabase;
+  return _supabasePromise;
 }
 
-/* ---- expose supabase as a promise for convenience ---- */
 export const supabaseReady = getClient();
 
 export async function getCategories() {

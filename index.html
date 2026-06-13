@@ -104,7 +104,8 @@
     <div class="hero-bg"></div>
     <div class="hero-pattern">
       <div class="hero-video-wrap" id="heroVideoWrap">
-        <div id="heroVideo"></div>
+        <iframe id="heroVideo" src="https://www.youtube.com/embed/B8rAc3k2EoU?autoplay=1&loop=1&playlist=B8rAc3k2EoU&controls=0&mute=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=https://www.menuscan.space"
+          allow="autoplay; encrypted-media" title="Luxora Background"></iframe>
         <div class="hero-video-overlay"></div>
       </div>
     </div>
@@ -285,42 +286,31 @@
 <!-- YouTube Hero Background -->
 <script>
 function onYouTubeIframeAPIReady() {
-  new YT.Player('heroVideo', {
-    videoId: 'B8rAc3k2EoU',
-    playerVars: {
-      autoplay: 1,
-      loop: 1,
-      playlist: 'B8rAc3k2EoU',
-      controls: 0,
-      showinfo: 0,
-      mute: 1,
-      rel: 0,
-      modestbranding: 1,
-      playsinline: 1,
-      start: 0,
-    },
-    events: {
-      onReady: (e) => e.target.playVideo(),
-      onStateChange: (e) => {
-        if (e.data === YT.PlayerState.PLAYING) {
-          const interval = setInterval(() => {
-            const t = e.target.getCurrentTime();
-            if (t >= 98) {
-              e.target.seekTo(0);
-            }
-          }, 500);
-          const stopCheck = () => {
-            if (e.target.getPlayerState() !== YT.PlayerState.PLAYING) {
-              clearInterval(interval);
-            } else {
-              requestAnimationFrame(stopCheck);
-            }
-          };
-          stopCheck();
-        }
+  var el = document.getElementById('heroVideo');
+  var _created = false;
+  function create() {
+    if (_created) return;
+    _created = true;
+    new YT.Player('heroVideo', {
+      events: {
+        onReady: function(e) { e.target.playVideo(); },
+        onStateChange: function(e) {
+          if (e.data === YT.PlayerState.PLAYING) {
+            var interval = setInterval(function() {
+              try { if (e.target.getCurrentTime() >= 98) e.target.seekTo(0); }
+              catch(e) { clearInterval(interval); }
+            }, 500);
+          }
+        },
       },
-    },
-  });
+    });
+  }
+  if (el && el.tagName === 'IFRAME') {
+    el.addEventListener('load', create, { once: true });
+    setTimeout(create, 3000);
+  } else {
+    create();
+  }
 }
 </script>
 <script src="https://www.youtube.com/iframe_api" defer></script>
