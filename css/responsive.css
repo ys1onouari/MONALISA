@@ -43,6 +43,19 @@
    ADMIN DASHBOARD — Responsive
    ============================================== */
 
+@media (max-width: 767px) {
+  .hero {
+    padding-top: 50px;
+    align-items: center;
+    min-height: 100dvh;
+  }
+
+  .hero-content {
+    padding-top: 0;
+    padding-bottom: 20px;
+  }
+}
+
 @media (max-width: 768px) {
   .admin-scaffold {
     flex-direction: column;
