@@ -4,7 +4,7 @@
 - Vanilla JS SPA (ES6 modules, no framework, no bundler)
 - Supabase (tables: `categories`, `menu_items`, `settings`; bucket: `dish-images`)
 - CSS custom properties (dark mode only)
-- Auth: `admin@fadaerif.com` / `fadaerif2026`
+- Auth: `admin@hamham.com` / `hamham2026`
 - i18n: `i18next` + `i18next-browser-languagedetector` (loaded from esm.sh CDN). Langues : `fr`, `en`, `es`, `ar` — configurées dans `js/locales/config.js`
 
 ## Dev server (required for ES6 modules)
@@ -17,7 +17,7 @@ Opening `index.html` via `file://` will not work.
 - Schema: `supabase-schema.sql` — run to create tables, RLS policies, seed data
 - Anon key in `js/config.js` (public, safe for client)
 - Personal access token: `<your-personal-access-token>`
-- Project ref: `<your-project-ref>`
+- Project ref: `kpqfszrlbuykuiupcmtw`
 - Management API: `POST https://api.supabase.com/v1/projects/{ref}/database/query` with PAT as Bearer token
 - `.env` file at root with `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY`, `SUPABASE_SBP`
 

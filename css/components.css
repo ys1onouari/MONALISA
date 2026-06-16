@@ -126,7 +126,7 @@
 
 .lang-btn.active {
   background: var(--primary);
-  color: #fff;
+  color: #000;
 }
 
 @media (max-width: 768px) {
@@ -663,7 +663,7 @@
   height: 38px;
   border-radius: 50%;
   background: var(--gradient-primary);
-  color: #fff;
+  color: #000;
   border: none;
   cursor: pointer;
   font-size: var(--text-xl);
@@ -690,7 +690,7 @@
   align-items: center;
   gap: var(--space-xs);
   background: var(--gradient-primary);
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: var(--radius-full);
   padding: var(--space-sm) var(--space-md);
@@ -706,6 +706,7 @@
   background: linear-gradient(135deg, var(--secondary), var(--primary));
   box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
   transform: translateY(-1px);
+  color: #000;
 }
 
 .wa-btn svg {
@@ -720,7 +721,7 @@
   top: -2px;
   right: -2px;
   background: var(--primary);
-  color: #fff;
+  color: #000;
   font-size: 9px;
   font-weight: 700;
   width: 17px;
@@ -942,7 +943,7 @@
   justify-content: center;
   gap: 10px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: 14px;
   padding: 14px 28px;
@@ -1177,7 +1178,7 @@
   gap: var(--space-sm);
   width: 100%;
   background: var(--gradient-primary);
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: var(--radius-md);
   padding: var(--space-md);
@@ -1345,7 +1346,7 @@
 .auth-btn {
   width: 100%;
   background: var(--gradient-primary);
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: var(--radius-md);
   padding: 14px;
@@ -1519,7 +1520,7 @@
 
 .admin-btn-add {
   background: var(--gradient-primary);
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: 6px;
   padding: 9px 18px;
@@ -1760,7 +1761,7 @@
 
 .admin-modal .btn-save {
   background: var(--gradient-primary);
-  color: #fff;
+  color: #000;
 }
 
 .admin-modal .btn-save:hover { box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3); }
@@ -1990,7 +1991,7 @@ body.admin-mode .page { padding-bottom: 0; }
 
 .fadaerif-modal-btn-confirm {
   background: var(--gradient-primary);
-  color: #fff;
+  color: #000;
 }
 
 .fadaerif-modal-btn-confirm:hover {

@@ -68,6 +68,10 @@ function renderItemsHeader() {
     <button class="admin-btn-export" id="adminExportBtn">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       ${t('admin.exportXlsx')}
+    </button>
+    <button class="admin-btn-import" id="adminDeleteAllBtn" style="border-color:rgba(212,85,74,0.3);color:var(--danger)">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      ${t('admin.deleteAll')}
     </button>`;
   if (addBtn) addBtn.after(wrap);
 }
@@ -117,6 +121,10 @@ function renderCatsHeader() {
     <button class="admin-btn-export" id="adminCatExportBtn">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
       ${t('admin.exportXlsx')}
+    </button>
+    <button class="admin-btn-import" id="adminDeleteAllCatsBtn" style="border-color:rgba(212,85,74,0.3);color:var(--danger)">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      ${t('admin.deleteAll')}
     </button>`;
   if (addBtn) addBtn.after(wrap);
 }
@@ -262,6 +270,8 @@ function bindEvents() {
     if (e.target.closest('#adminImportBtn')) importInput.click();
     if (e.target.closest('#adminCatExportBtn')) exportCatsXLSX();
     if (e.target.closest('#adminCatImportBtn')) catImportInput.click();
+    if (e.target.closest('#adminDeleteAllBtn')) deleteAllItems();
+    if (e.target.closest('#adminDeleteAllCatsBtn')) deleteAllCats();
   });
 
   document.addEventListener('click', (e) => {
@@ -371,6 +381,25 @@ async function refresh() {
   renderFilterChips();
   renderMenuGrid();
   loadConfig();
+}
+
+/* --- Delete All --- */
+async function deleteAllItems() {
+  if (!await showConfirm(t('admin.deleteAllItems'))) return;
+  for (const item of items) {
+    await deleteMenuItem(item.id);
+  }
+  showToast(t('admin.toastDeleteAllDone'));
+  await refresh();
+}
+
+async function deleteAllCats() {
+  if (!await showConfirm(t('admin.deleteAllCats'))) return;
+  for (const cat of cats) {
+    await deleteCategory(cat.id);
+  }
+  showToast(t('admin.toastDeleteAllCatsDone'));
+  await refresh();
 }
 
 /* --- XLSX Import / Export --- */
