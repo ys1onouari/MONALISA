@@ -7,8 +7,8 @@ export default {
   },
   hero: {
     eyebrow: 'مرحباً بكم في',
-    subtitle: 'مقهى & مطعم',
-    taglineRif: 'FRESHLY SELECTED FROM THE RIF',
+    subtitle: 'SNACK',
+    taglineRif: 'FRESHLY SELECTED FROM THE SALE',
     tagline: 'مقرمش • طازج • أصيل',
     cta: 'اكتشف القائمة',
   },

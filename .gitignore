@@ -26,3 +26,6 @@ node_modules/
 
 # === Serve / npx caches ===
 .serve/
+
+# === Docs with secrets ===
+SUPABASE_MIGRATION_GUIDE.md

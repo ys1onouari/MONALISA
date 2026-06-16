@@ -1,4 +1,4 @@
-# RESTAURANT FADAE RIF — Menu Digital
+# RESTAURANT CHEF HAM&HAM — Menu Digital
 
 ## Architecture
 

@@ -1,18 +1,18 @@
 /* ==========================================
-   FADAE RIF — PREMIUM RED THEME
+   CHEF HAM&HAM — PREMIUM RED THEME
    ========================================== */
 
 :root {
-  /* Brand Colors */
-  --primary: #D40906;
-  --primary-dark: #9E0604;
-  --primary-light: #F03A35;
+  /* Brand Colors — Gold & Fire */
+  --primary: #D4AF37;
+  --primary-dark: #8C6A17;
+  --primary-light: #FFE08A;
 
   --secondary: #F25928;
   --secondary-light: #FF7A47;
 
-  --accent: #E8D33A;
-  --accent-dim: rgba(232, 211, 58, 0.12);
+  --accent: #D4AF37;
+  --accent-dim: rgba(212, 175, 55, 0.12);
 
   /* Backgrounds */
   --bg: #090909;
@@ -23,11 +23,19 @@
   --glass: rgba(9, 9, 9, 0.75);
   --glass-border: rgba(255, 255, 255, 0.08);
 
-  /* Gold (legacy alias → primary/secondary) */
-  --gold: var(--primary);
-  --gold2: var(--secondary-light);
-  --gold3: var(--primary-dark);
-  --gold-dim: rgba(212, 9, 6, 0.12);
+  /* Gold */
+  --gold: #D4AF37;
+  --gold2: #FFE08A;
+  --gold3: #8C6A17;
+  --gold-dim: rgba(212, 175, 55, 0.12);
+
+  /* New semantic aliases */
+  --bg-primary: var(--bg);
+  --text-primary: var(--text);
+  --bg-card: var(--card);
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --gold-primary: #D4AF37;
+  --fire-orange: #F25928;
 
   /* Text */
   --text: #FFFFFF;
@@ -55,7 +63,7 @@
   /* Shadows */
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 40px rgba(212, 9, 6, 0.15);
+  --shadow-glow: 0 0 40px rgba(212, 175, 55, 0.15);
 
   /* Typography */
   --text-xs: 0.75rem;
@@ -67,8 +75,8 @@
   --text-3xl: 2rem;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #9E0604 0%, #D40906 45%, #F25928 100%);
-  --gradient-accent: linear-gradient(135deg, #E8D33A, #FFD700);
+  --gradient-primary: linear-gradient(135deg, #8C6A17 0%, #D4AF37 45%, #FFE08A 100%);
+  --gradient-accent: linear-gradient(135deg, #D4AF37, #FFE08A);
 }
 
 @keyframes shimmer {

@@ -1,4 +1,4 @@
-# RESTAURANT FADAE RIF — Digital Menu
+# RESTAURANT CHEF HAM&HAM — Digital Menu
 
 ## Stack
 - Vanilla JS SPA (ES6 modules, no framework, no bundler)
@@ -38,7 +38,7 @@ Opening `index.html` via `file://` will not work.
 - IDs: `camelCase`; classes: `kebab-case`; data attributes: `kebab-case`
 - Currency: `DH` (no symbol)
 - No emoji/icons — only inline SVG
-- Palette: `#090909` bg, `#D40906` primary, `#F25928` secondary, `#E8D33A` accent, glassmorphism with `rgba(255,255,255,0.08)` borders
+- Palette: `#090909` bg, `#D4AF37` primary (gold), `#F25928` secondary (fire-orange), `#8C6A17` dark gold, `#FFE08A` light gold, glassmorphism with `rgba(255,255,255,0.08)` borders
 - i18n: use `t('key')` in JS, `data-i18n="key"` in HTML, `data-i18n-placeholder`/`data-i18n-title`/`data-i18n-alt`/`data-i18n-content` for attributes
 - Add new keys to all locale files (`fr.js`, `en.js`, `es.js`, `ar.js`) when adding text
 - RTL: `[dir="rtl"]` CSS overrides in `css/rtl.css` for Arabic — flip margins, borders, sidebar, cart, form labels, badges, nav elements

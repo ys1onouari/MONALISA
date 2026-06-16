@@ -1,6 +1,6 @@
-# Configuration Supabase — RESTAURANT FADAE RIF
+# Configuration Supabase — RESTAURANT CHEF HAM&HAM
 
-Ce document répertorie **toute** la configuration Supabase utilisée par le projet RESTAURANT FADAE RIF. Il permet de migrer vers un nouveau compte/projet Supabase sans rien oublier.
+Ce document répertorie **toute** la configuration Supabase utilisée par le projet RESTAURANT CHEF HAM&HAM. Il permet de migrer vers un nouveau compte/projet Supabase sans rien oublier.
 
 ---
 
@@ -16,7 +16,7 @@ export const SUPABASE_ANON_KEY = '<anon-key-public>';
 ### Fichier `.env` (racine du projet — usage local / CI)
 
 ```env
-# Supabase — FADAE RIF Admin
+# Supabase — CHEF HAM&HAM Admin
 SUPABASE_URL=https://<project-ref>.supabase.co
 SUPABASE_ANON_KEY=<anon-key-public>
 SUPABASE_SERVICE_KEY=<service-role-key>       # Ne JAMAIS exposer côté client
@@ -146,7 +146,7 @@ CREATE TABLE settings (
 
 | Key | Valeur par défaut | Usage |
 |---|---|---|
-| `restaurant_name` | `RESTAURANT FADAE RIF` | Nom dans le header et WhatsApp |
+| `restaurant_name` | `RESTAURANT CHEF HAM&HAM` | Nom dans le header et WhatsApp |
 | `restaurant_subtitle` | `Restaurant Gastronomique` | Sous-titre (contact) |
 | `address` | Adresse complète | Page contact |
 | `hours` | Horaires d'ouverture | Page contact |
