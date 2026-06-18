@@ -8,9 +8,6 @@ export default {
   hero: {
     eyebrow: 'Bienvenue chez',
     subtitle: 'CAFÉ & RESTAURANT',
-    taglineRif: 'FRESHLY SELECTED FROM THE SALE',
-    tagline: 'CRISPY • FRESH • AUTHENTIC',
-    cta: 'Découvrir le Menu',
   },
   cart: {
     title: 'Votre commande',

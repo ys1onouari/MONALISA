@@ -8,8 +8,6 @@ export default {
   hero: {
     eyebrow: 'مرحباً بكم في',
     subtitle: 'CAFÉ & RESTAURANT',
-    taglineRif: 'FRESHLY SELECTED FROM THE SALE',
-    tagline: 'مقرمش • طازج • أصيل',
     cta: 'اكتشف القائمة',
   },
   cart: {
