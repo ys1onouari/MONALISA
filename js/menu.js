@@ -60,24 +60,14 @@ export function renderContact() {
   const wrap = $('contactWrap');
   if (!wrap) return;
   const s = SETTINGS;
+  const cards = [];
+  if (s.address) cards.push(`<div class="contact-card"><div class="contact-info"><h3>${t('contact.addressTitle')}</h3><p>${s.address}</p></div></div>`);
+  if (s.hours) cards.push(`<div class="contact-card"><div class="contact-info"><h3>${t('contact.hoursTitle')}</h3><p>${s.hours}</p></div></div>`);
+  if (s.phone) cards.push(`<div class="contact-card"><div class="contact-info"><h3>${t('contact.phoneTitle')}</h3><a href="tel:${s.phone_raw || s.phone}">${s.phone}</a></div></div>`);
+  if (s.email) cards.push(`<div class="contact-card"><div class="contact-info"><h3>${t('contact.emailTitle')}</h3><a href="mailto:${s.email}">${s.email}</a></div></div>`);
+  if (s.instagram) cards.push(`<div class="contact-card"><div class="contact-info"><h3>${t('contact.instagramTitle')}</h3><a href="${s.instagram}" target="_blank" rel="noopener">${s.instagram}</a></div></div>`);
   wrap.innerHTML = `
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-info"><h3>${t('contact.addressTitle')}</h3><p>${s.address || '12 Avenue des Saveurs<br/>Tanger, Maroc'}</p></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-info"><h3>${t('contact.hoursTitle')}</h3><p>${s.hours || 'Lun–Sam : 12h–15h · 19h–23h<br/>Dim : 12h–16h'}</p></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-info"><h3>${t('contact.phoneTitle')}</h3><a href="tel:${s.phone_raw || '+212630230803'}">${s.phone || '+212 630 230 803'}</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-info"><h3>${t('contact.emailTitle')}</h3><a href="mailto:${s.email || 'contact@fadaerif.ma'}">${s.email || 'contact@fadaerif.ma'}</a></div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-info"><h3>${t('contact.instagramTitle')}</h3><a href="#">${s.instagram || '@fadaerif.marrakech'}</a></div>
-      </div>
-    </div>
+    <div class="contact-grid">${cards.join('')}</div>
     <div class="google-review-block">
       <div class="google-review-stars">${t('contact.reviewStars')}</div>
       <div class="google-review-score">${t('contact.reviewScore')}</div>
