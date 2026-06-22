@@ -26,7 +26,7 @@ npx serve . --listen 3000
 
 ## Supabase
 - Schema: `supabase-schema.sql` (tables, RLS, seed data) — **authoritative source of truth**
-- Project ref: `hmglnevnhzdewbohadil`
+- Project ref: `twcwukrgbgspqajofels`
 - `.env` at root with `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY`, `SUPABASE_SBP`
 - To run SQL: `POST https://api.supabase.com/v1/projects/{ref}/database/query` with PAT as Bearer + `{"query": "..."}`
 - DB text fields (`categories.name`, `menu_items.name`, `menu_items.description`) are JSONB: `{fr: "...", en: "...", es: "...", ar: "..."}` — use `localized(value)` to display, pass the full JSONB object when saving

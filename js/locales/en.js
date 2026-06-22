@@ -9,6 +9,7 @@ export default {
     eyebrow: 'Welcome to',
     subtitle: 'CAFÉ & RESTAURANT',
     cta: 'Discover the Menu',
+    fallback: 'Our Restaurant',
   },
   cart: {
     title: 'Your Order',
@@ -160,8 +161,8 @@ export default {
     ar: 'العربية',
   },
   site: {
-    description: 'SNACK AL MADINA · Digital Menu',
-    title: 'SNACK AL MADINA · Fine Dining Restaurant',
+    description: 'Restaurant · Digital Menu',
+    title: 'Restaurant · Fine Dining',
   },
   wa: {
     orderMsg: 'Hello,\n\nI would like to order:\n\nDish: {{name}}\nPrice: {{price}} MAD\n\nTicket: {{ticket}}\n\nPlease confirm availability.',

@@ -7,33 +7,33 @@ Source : `css/variables.css`
 ### Palette principale (Brand)
 
 | Variable | Valeur | Rôle |
-|---|---|---|
-| `--primary` | `#6B4528` | Rouge principal — boutons, accents, toggles on, scrollbar, sélection |
-| `--primary-dark` | `#2E1B10` | Fond du bouton add-cart, badge unavailable, état inactif |
-| `--primary-light` | `#8B6035` | Variante claire du rouge (réservée) |
-| `--secondary` | `#D4A843` | Gold premium — texte actif, bordures hover, accent nav, section-eyebrow |
-| `--secondary-light` | `#E6C55A` | Gold clair — complément du gold (réservé) |
-| `--accent` | `#E6B84A` | Jaune pâle — prix, hero-eyebrow, cart-total-amount |
-| `--accent-dim` | `rgba(230,184,74,0.12)` | Accent à faible opacité — fonds subtils |
+|---|---|---|---|
+| `--primary` | `#A86A2A` | Brun caramel — boutons, accents, toggles on, scrollbar, sélection |
+| `--primary-dark` | `#5B3718` | Brun foncé — fond du bouton add-cart, badge unavailable, état inactif |
+| `--primary-light` | `#8B6035` | Variante claire du brun (réservée) |
+| `--secondary` | `#D4A64A` | Doré principal — texte actif, bordures hover, accent nav, section-eyebrow |
+| `--secondary-light` | `#E6C55A` | Gold clair — complément du doré (réservé) |
+| `--accent` | `#B8842F` | Doré foncé — prix, hero-eyebrow, cart-total-amount |
+| `--accent-dim` | `rgba(184,132,47,0.12)` | Accent à faible opacité — fonds subtils |
 
 ### Arrière-plans (Backgrounds)
 
 | Variable | Valeur | Rôle |
 |---|---|---|
-| `--bg` | `#1E1208` | Fond principal de la page & dashboard admin |
-| `--bg2` | `#2A1A0E` | Fond secondaire — inputs, sidebar admin, scrollbar track |
-| `--bg3` | `#3A2215` | Fond tertiaire — image placeholder, upload label, toggle off |
+| `--bg` | `#111111` | Noir principal — fond principal de la page & dashboard admin |
+| `--bg2` | `#1E1208` | Fond secondaire — inputs, sidebar admin, scrollbar track |
+| `--bg3` | `#2A1A0E` | Fond tertiaire — image placeholder, upload label, toggle off |
 | `--card` | `rgba(255,255,255,0.04)` | Fond des cartes (dish, catégorie, contact, panier) |
 | `--card-hover` | `rgba(255,255,255,0.07)` | Fond des cartes au survol |
-| `--glass` | `rgba(30,18,8,0.72)` | Fond vitré — top-nav, bottom-nav, cart-sidebar, toast |
-| `--glass-border` | `rgba(212,168,67,0.12)` | Bordure des éléments vitrés (gold tinté) |
+| `--glass` | `rgba(17,17,17,0.72)` | Fond vitré — top-nav, bottom-nav, cart-sidebar, toast |
+| `--glass-border` | `rgba(212,166,74,0.12)` | Bordure des éléments vitrés (gold tinté) |
 
 ### Texte
 
 | Variable | Valeur | Rôle |
 |---|---|---|
-| `--text` | `#F7F1E7` | Texte principal — titres, noms de plats, body |
-| `--text2` | `#D4C4A8` | Texte secondaire — labels, infos |
+| `--text` | `#F8F6F0` | Blanc texte — texte principal, titres, noms de plats, body |
+| `--text2` | `#EEDDB8` | Beige crème — texte secondaire, labels, infos |
 | `--text3` | `#A89070` | Texte tertiaire — nav items inactifs, placeholder, descriptions |
 
 ### Statut
@@ -41,15 +41,15 @@ Source : `css/variables.css`
 | Variable | Valeur | Rôle |
 |---|---|---|
 | `--success` | `#3A9D5E` | Vert — badge-dot.on, succès |
-| `--danger` | `#D4554A` | Rouge — badge-dot.off, erreur auth, bouton logout, cart-remove hover |
-| `--warning` | `#D4A843` | Or — avertissements |
+| `--danger` | `#D78873` | Saumon — badge-dot.off, erreur auth, bouton logout, cart-remove hover |
+| `--warning` | `#D4A64A` | Doré — avertissements |
 
 ### Bordures
 
 | Variable | Valeur | Rôle |
 |---|---|---|
-| `--border` | `rgba(212,168,67,0.08)` | Bordure fine générique |
-| `--border-strong` | `rgba(212,168,67,0.14)` | Bordure prononcée |
+| `--border` | `rgba(212,166,74,0.08)` | Bordure fine générique |
+| `--border-strong` | `rgba(212,166,74,0.14)` | Bordure prononcée |
 
 ### Ombres (Shadows)
 
@@ -58,16 +58,16 @@ Source : `css/variables.css`
 | `--shadow-sm` | `0 4px 16px rgba(0,0,0,0.25)` | Petite ombre — hover wa-btn |
 | `--shadow-md` | `0 8px 32px rgba(0,0,0,0.40)` | Ombre moyenne — boutons, toast |
 | `--shadow-lg` | `0 16px 48px rgba(0,0,0,0.50)` | Grande ombre — dish-card hover |
-| `--shadow-red` | `0 0 40px rgba(107,69,40,0.18)` | Lueur rouge (alias `--shadow-glow`) |
-| `--shadow-gold` | `0 0 40px rgba(212,168,67,0.15)` | Lueur dorée — hover boutons |
+| `--shadow-red` | `0 0 40px rgba(168,106,42,0.18)` | Lueur brune (alias `--shadow-glow`) |
+| `--shadow-gold` | `0 0 40px rgba(212,166,74,0.15)` | Lueur dorée — hover boutons |
 
 ### Dégradés (Gradients)
 
 | Variable | Valeur | Rôle |
 |---|---|---|
-| `--gradient-primary` | `135deg, #1E1208 → #6B4528 → #D4A843` | Boutons principaux (btn-primary, wa-btn, cart-checkout, auth-btn) |
-| `--gradient-accent` | `135deg, #D4A843 → #E6C55A → #F0D88A` | Réservé (accent décoratif) |
-| `--gradient-dark` | `180deg, #1E1208 → #2A1A0E` | Fond de section sombre |
+| `--gradient-primary` | `135deg, #111111 → #A86A2A → #D4A64A` | Boutons principaux (btn-primary, wa-btn, cart-checkout, auth-btn) |
+| `--gradient-accent` | `135deg, #D4A64A → #E6C55A → #F0D88A` | Réservé (accent décoratif) |
+| `--gradient-dark` | `180deg, #111111 → #1E1208` | Fond de section sombre |
 
 ### Espacement (Spacing)
 

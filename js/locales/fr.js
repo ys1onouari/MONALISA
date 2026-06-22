@@ -9,6 +9,7 @@ export default {
     eyebrow: 'Bienvenue chez',
     subtitle: 'CAFÉ & RESTAURANT',
     cta: 'Découvrir le Menu',
+    fallback: 'Notre Restaurant',
   },
   cart: {
     title: 'Votre commande',
@@ -160,8 +161,8 @@ export default {
     ar: 'العربية',
   },
   site: {
-    description: 'SNACK AL MADINA · Menu Digital',
-    title: 'SNACK AL MADINA · Restaurant Gastronomique',
+    description: 'Restaurant · Menu Digital',
+    title: 'Restaurant · Menu Gastronomique',
   },
   wa: {
     orderMsg: 'Bonjour,\n\nJe souhaite commander :\n\nPlat : {{name}}\nPrix : {{price}} DH\n\nTicket : {{ticket}}\n\nMerci de confirmer la disponibilité.',

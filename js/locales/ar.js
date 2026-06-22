@@ -9,6 +9,7 @@ export default {
     eyebrow: 'مرحباً بكم في',
     subtitle: 'CAFÉ & RESTAURANT',
     cta: 'اكتشف القائمة',
+    fallback: 'مطعمنا',
   },
   cart: {
     title: 'طلبك',
@@ -160,8 +161,8 @@ export default {
     ar: 'العربية',
   },
   site: {
-    description: 'مطعم سناك المدينة · القائمة الرقمية',
-    title: 'مطعم سناك المدينة · مطعم راقي',
+    description: 'مطعم · القائمة الرقمية',
+    title: 'مطعم · راقي',
   },
   wa: {
     orderMsg: 'السلام عليكم،\n\nأود طلب:\n\nالطبق: {{name}}\nالسعر: {{price}} درهم\n\nالتذكرة: {{ticket}}\n\nيرجى تأكيد التوفر.',

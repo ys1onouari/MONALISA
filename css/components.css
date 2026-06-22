@@ -402,6 +402,36 @@
   filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6));
 }
 
+/* ===== Hero Skeleton Loading ===== */
+
+.hero-title,
+.hero-subtitle {
+  transition: opacity 0.3s ease;
+}
+
+.hero-title.skeleton,
+.hero-subtitle.skeleton {
+  background: linear-gradient(90deg, var(--bg2) 25%, var(--bg3) 50%, var(--bg2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-title.skeleton {
+  width: 60%;
+  min-height: clamp(36px, 9vw, 76px);
+  margin: 0 auto var(--space-sm);
+}
+
+.hero-subtitle.skeleton {
+  width: 40%;
+  min-height: clamp(13px, 3vw, 17px);
+  margin: 0 auto var(--space-xl);
+}
+
 .hero-tagline {
   font-size: var(--text-sm);
   color: #fff;
