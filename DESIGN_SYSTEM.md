@@ -1,4 +1,4 @@
-# DESIGN SYSTEM — RESTAURANT FADAE RIF
+# DESIGN SYSTEM — MONALISA
 
 ## 1. Palette de couleurs
 
@@ -222,7 +222,7 @@ Font sizes supplémentaires (hardcodées) :
 - **Tables :** `.admin-tbl` — responsive, card layout on `<480px`
 - **Modaux :** `.admin-modal` — `scaleIn`, `--radius-lg`, inputs gold focus
 
-### FADAE RIF Modal (Confirm / Alert / Prompt)
+### MONALISA Modal (Confirm / Alert / Prompt)
 
 - **Fichier :** `css/components.css` lignes 1924–2070
 - **Structure :** `.fadaerif-modal-overlay` (backdrop blur), `.fadaerif-modal` (scale transition), accent line top

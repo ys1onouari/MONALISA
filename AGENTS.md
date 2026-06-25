@@ -1,4 +1,4 @@
-# RESTAURANT FADAE RIF — Digital Menu
+# MONALISA — Digital Menu
 
 ## Stack
 Vanilla JS SPA (ES6 modules, no bundler) · Supabase (`categories`, `menu_items`, `settings`) · i18next + lang detector from esm.sh · Dark-mode CSS only
